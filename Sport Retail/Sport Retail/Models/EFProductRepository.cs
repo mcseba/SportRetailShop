@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Sport_Retail.Models
 {
-    public class EFProductRepository : IProductRepository
+    public class EfProductRepository : IProductRepository
     {
         private readonly AppDbContext _ctx;
 
-        public EFProductRepository(AppDbContext ctx)
+        public EfProductRepository(AppDbContext ctx)
         {
             _ctx = ctx;
         }

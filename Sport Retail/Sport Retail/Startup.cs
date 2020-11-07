@@ -25,6 +25,7 @@ namespace Sport_Retail
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:SportRetailProducts:ConnectionString"]));
         }
