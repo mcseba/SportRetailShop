@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Sport_Retail.Models;
 
 namespace Sport_Retail.Controllers
@@ -17,6 +18,6 @@ namespace Sport_Retail.Controllers
             _repository = repository;
         }
 
-        public IActionResult ListAll() => View(_repository.Products);
+        public IActionResult ListAll() => View(_repository.Products.Include(t => t.Category));
     }
 }
