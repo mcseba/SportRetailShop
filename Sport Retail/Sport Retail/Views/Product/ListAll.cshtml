@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewBag.Title = "Product List";
+    Layout = "_Layout";
+}
+
+@foreach (var p in Model)
+{
+    <div>
+        <ul>
+            <li>
+                <h3>@p.Category.Name</h3>
+            </li>
+            <li>
+                <h4>@p.Name</h4>
+            </li>
+            <li>
+                <h4>@p.Price</h4>
+            </li>
+        </ul>
+    </div>
+}
