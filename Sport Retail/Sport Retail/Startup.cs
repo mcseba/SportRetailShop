@@ -48,6 +48,7 @@ namespace Sport_Retail
                     name: "Product List",
                     pattern: "{controller=Product}/{action=ListAll}/{id?}");
             });
+            SeedData.EnsurePopulated(app);
         }
     }
 }
