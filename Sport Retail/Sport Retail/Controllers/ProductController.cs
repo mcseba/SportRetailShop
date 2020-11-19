@@ -19,5 +19,12 @@ namespace Sport_Retail.Controllers
         }
 
         public IActionResult ListAll() => View(_repository.Products.Include(t => t.Category));
+
+        public IActionResult List(string category)
+        {
+            IEnumerable<Product> products = _repository.Products.Where(p => p.Category.Name == category)
+                .Include(t => t.Category).AsEnumerable<Product>();
+            return View(products);
+        }
     }
 }
