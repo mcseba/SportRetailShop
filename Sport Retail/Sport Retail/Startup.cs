@@ -49,8 +49,20 @@ namespace Sport_Retail
                     pattern: "{controller=Product}/{action=ListAll}/{id?}");
 
                 endpoints.MapControllerRoute(
-                    name: "List category",
+                    name: "Product sorted",
                     pattern: "{controller=Product}/{action=List}/{category?}");
+                
+                endpoints.MapControllerRoute(
+                    name: "Admin dashboard",
+                    pattern: "{controller=Admin}/{action=Index}");
+                
+                endpoints.MapControllerRoute(
+                    name: "Admin delete",
+                    pattern: "{controller=Admin}/{action=Delete}/{id?}");
+                
+                endpoints.MapControllerRoute(
+                    name: "Admin edit",
+                    pattern: "{controller=Admin}/{action=Edit}/{id?}");
             });
             SeedData.EnsurePopulated(app);
         }
