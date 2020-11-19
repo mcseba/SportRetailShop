@@ -18,7 +18,8 @@ namespace Sport_Retail.Models
 
         public void DeleteProduct(int id)
         {
-            _ctx.Remove(_ctx.Products.Single(p => p.Id == id));
+            var product = _ctx.Products.Find(id);
+            _ctx.Remove(product);
             _ctx.SaveChanges();   
         }
 

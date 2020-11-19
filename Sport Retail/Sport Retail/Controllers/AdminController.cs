@@ -21,7 +21,7 @@ namespace Sport_Retail.Controllers
             return View(products);
         }
         
-        [HttpPut]
+        [HttpPost]
         public IActionResult Edit(int id)
         {
             var productToEdit = _repository.Products.Single(p => p.Id == id);
@@ -48,6 +48,7 @@ namespace Sport_Retail.Controllers
         public IActionResult Delete(int id)
         {
             _repository.DeleteProduct(id);
+
             TempData["Success"] = "Usunieto produkt z bazy danych";
 
             return RedirectToAction("Index", "Admin");
