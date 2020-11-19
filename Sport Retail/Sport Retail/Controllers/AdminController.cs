@@ -20,7 +20,8 @@ namespace Sport_Retail.Controllers
             var products = _repository.Products.Include(p => p.Category);
             return View(products);
         }
-
+        
+        [HttpPut]
         public IActionResult Edit(int id)
         {
             var productToEdit = _repository.Products.Single(p => p.Id == id);
@@ -28,23 +29,26 @@ namespace Sport_Retail.Controllers
             return View(productToEdit);
         }
 
+        [HttpPost]
         public IActionResult Save(Product product)
         {
             _repository.SaveProduct(product);
-            TempData["SuccessSave"] = "Zapisano produkty w bazie danych";
+            TempData["Success"] = "Zapisano produkty w bazie danych";
 
             return RedirectToAction("Index", "Admin");
         }
 
+        [HttpPost]
         public IActionResult Create()
         {
             return View("Edit", new Product());
         }
 
+        [HttpPost]
         public IActionResult Delete(int id)
         {
             _repository.DeleteProduct(id);
-            TempData["SuccessDelete"] = "Usunieto produkt z bazy danych";
+            TempData["Success"] = "Usunieto produkt z bazy danych";
 
             return RedirectToAction("Index", "Admin");
         }
