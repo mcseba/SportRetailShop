@@ -18,7 +18,7 @@ namespace Sport_Retail.Models
 
         public void DeleteProduct(int id)
         {
-            var product = _ctx.Products.Find(id);
+            Product product = _ctx.Products.Find(id);
             _ctx.Remove(product);
             _ctx.SaveChanges();   
         }
@@ -31,7 +31,7 @@ namespace Sport_Retail.Models
             }
             else
             {
-                var productInDb = _ctx.Products.Single(p => p.Id == product.Id);
+                Product productInDb = _ctx.Products.Single(p => p.Id == product.Id);
 
                 productInDb.Name = product.Name;
                 productInDb.Price = product.Price;
