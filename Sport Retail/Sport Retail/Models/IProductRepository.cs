@@ -9,5 +9,8 @@ namespace Sport_Retail.Models
     {
         IQueryable<Product> Products { get; }
 
+        void DeleteProduct(int id);
+
+        void SaveProduct(Product p);
     }
 }
