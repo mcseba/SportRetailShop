@@ -10,11 +10,13 @@ namespace Sport_Retail.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IProductRepository _repository;
+        private IProductRepository _repository;
         public AdminController(IProductRepository repository)
         {
             _repository = repository;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
             var products = _repository.Products.Include(p => p.Category);
@@ -44,7 +46,7 @@ namespace Sport_Retail.Controllers
             return View("Edit", new Product());
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             _repository.DeleteProduct(id);
