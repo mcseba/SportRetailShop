@@ -1,0 +1,34 @@
+﻿@model Sport_Retail.ViewModels.ProductFormViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid vh-100 bg-dark">
+<h1 class="text-center text-light">Formularz produktowy</h1>
+    @using (Html.BeginForm("Save", "Admin")) 
+    { 
+        @Html.HiddenFor(p => p.Product.Id)
+        
+        <div class="form-group">
+            @Html.LabelFor(p => p.Product.Name, "Nazwa produktu")
+            @Html.TextBoxFor(p => p.Product.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Product.Price, "Cena")
+            @Html.TextBoxFor(p => p.Product.Price, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(p => p.Product.Description, "Opis produktu")
+            @Html.TextBoxFor(p => p.Product.Description, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Product.CategoryId)
+            @Html.DropDownListFor(c => c.Product.CategoryId, new SelectList(Model.Categories, "Id", "Name"),
+                "Wybierz kategorie produktu", new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-outline-success">Zapisz</button>
+    }
+</div>
