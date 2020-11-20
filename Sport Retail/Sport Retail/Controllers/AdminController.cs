@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Sport_Retail.Models;
+using Sport_Retail.ViewModels;
 
 namespace Sport_Retail.Controllers
 {
     public class AdminController : Controller
     {
-        private IProductRepository _repository;
+        private readonly IProductRepository _repository;
         public AdminController(IProductRepository repository)
         {
             _repository = repository;
@@ -23,12 +24,18 @@ namespace Sport_Retail.Controllers
             return View(products);
         }
         
-        [HttpPost]
+        [HttpGet]
         public IActionResult Edit(int id)
         {
-            var productToEdit = _repository.Products.Single(p => p.Id == id);
+            var productToEdit = _repository.Products.SingleOrDefault(p => p.Id == id);
 
-            return View(productToEdit);
+            var viewModel = new ProductFormViewModel
+            {
+                Product = productToEdit,
+                Categories = _repository.Categories.ToList()
+            };
+
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -40,10 +47,16 @@ namespace Sport_Retail.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Create()
         {
-            return View("Edit", new Product());
+            var categories = _repository.Categories.ToList();
+            var viewModel = new ProductFormViewModel
+            {
+                Categories = categories
+            };
+
+            return View("Edit", viewModel);
         }
 
         [HttpGet]
