@@ -15,6 +15,7 @@ namespace Sport_Retail.Models
         }
 
         public IQueryable<Product> Products => _ctx.Products;
+        public IQueryable<Category> Categories => _ctx.Categories;
 
         public void DeleteProduct(int id)
         {
@@ -36,6 +37,7 @@ namespace Sport_Retail.Models
                 productInDb.Name = product.Name;
                 productInDb.Price = product.Price;
                 productInDb.Description = product.Description;
+                productInDb.CategoryId = product.CategoryId;
             }
             _ctx.SaveChanges();
         }

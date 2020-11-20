@@ -8,6 +8,7 @@ namespace Sport_Retail.Models
     public interface IProductRepository
     {
         IQueryable<Product> Products { get; }
+        IQueryable<Category> Categories { get; }
 
         void DeleteProduct(int id);
 
