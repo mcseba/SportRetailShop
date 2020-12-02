@@ -4,7 +4,7 @@
 
 @foreach (var category in Model)
 {
-    <a class="nav-item nav-link btn btn-block bg-primary p-1 w-auto h-75 m-1"
+    <a class="nav-item nav-link btn btn-outline-primary p-1 w-auto h-75 m-1"
        asp-action="List"
        asp-controller="Product"
        asp-route-category="@category.Name">
