@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sport_Retail.Middlewares;
 using Sport_Retail.Models;
 
 namespace Sport_Retail
@@ -28,6 +30,9 @@ namespace Sport_Retail
             services.AddTransient<IProductRepository, EfProductRepository>();
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration["Data:SportRetailProducts:ConnectionString"]));
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +45,13 @@ namespace Sport_Retail
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+
             app.UseRouting();
+            
+            app.UseAuthentication();
+            app.UseAuthorization();
+            
+            app.UseMiddleware<ElapsedTimeMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
@@ -64,7 +75,7 @@ namespace Sport_Retail
                     name: "Admin edit",
                     pattern: "{controller=Admin}/{action=Edit}/{id?}");
             });
-            SeedData.EnsurePopulated(app);
+
         }
     }
 }
