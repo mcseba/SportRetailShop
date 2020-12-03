@@ -4,14 +4,16 @@
     Layout = "_Layout";
 }
 
-@foreach (var p in Model)
-{
-    <div class="card w-25 m-2 ">
-        <div class="card-body">
-            <h5 class="card-title">@p.Name</h5>
-            <h6 class="card-subtitle">@p.Category.Name</h6>
-            <p class="card-text">@p.Description</p>
-            <h6 class="text-dark">@p.Price $</h6>
+<div class="container".>
+    @foreach (var p in Model)
+    {
+        <div class="card m-1 w-25">
+            <div class="card-body">
+                <h5 class="card-title">@p.Name</h5>
+                <h6 class="card-subtitle">@p.Category.Name</h6>
+                <p class="card-text">@p.Description</p>
+                <h6 class="text-dark">@p.Price $</h6>
+            </div>
         </div>
-    </div>
-}
+    }
+</div>
