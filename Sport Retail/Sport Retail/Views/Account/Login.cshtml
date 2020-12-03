@@ -1,0 +1,27 @@
+﻿@model Sport_Retail.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<div class="container bg-light">
+    @using(Html.BeginForm("Login", "Account", "post"))
+    {
+        @Html.HiddenFor(u => u.ReturnUrl)
+
+        <div class="form-group">
+            @Html.LabelFor(u => u.Name)
+            @Html.ValidationMessageFor(u => u.Name, "Wprowadz poprawną nazwe uzytkownika")
+            @Html.TextBoxFor(u => u.Name, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Password)
+            @Html.ValidationMessageFor(u => u.Password, "Wprowadz poprawne haslo")
+            @Html.TextBoxFor(u => u.Password, new { @class = "form-control"})
+        </div>
+        <button class="btn-outline-secondary" type="submit"></button>
+    }
+</div>
+
