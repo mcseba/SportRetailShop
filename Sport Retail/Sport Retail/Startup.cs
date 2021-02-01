@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +28,9 @@ namespace Sport_Retail
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddControllers();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +43,14 @@ namespace Sport_Retail
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product API v1");
+                c.RoutePrefix = "api";
+            });
 
             app.UseRouting();
             
@@ -74,6 +80,7 @@ namespace Sport_Retail
                 endpoints.MapControllerRoute(
                     name: "Admin edit",
                     pattern: "{controller=Admin}/{action=Edit}/{id?}");
+
             });
 
         }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sport Retail", "Sport Retail\Sport Retail.csproj", "{F741A960-8805-4E64-8314-CA4C96DC79AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sport Retail", "Sport Retail\Sport Retail.csproj", "{F741A960-8805-4E64-8314-CA4C96DC79AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
